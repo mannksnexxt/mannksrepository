@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="section">
+        <h1 class="title">GIT it is easy!</h1>
+        <h2 class="subtitle">Simple manager for working with git!</h2>
+
+        <div class="content">
+            <div class="index-preview">
+                <img class="image" src="https://png.pngtree.com/thumb_back/fw800/back_pic/00/13/13/7056443641d37b3.jpg" alt="">
+                <a class="index-button" href="{{ url_for('clone') }}">
+                    <h1 class="title">Try it!</h1>
+                </a>
+            </div>
+        </div>
+
+    </section>
+    <!-- https://png.pngtree.com/thumb_back/fw800/back_pic/00/13/13/7056443641d37b3.jpg -->
+
+{% endblock %}

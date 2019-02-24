@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% with message = get_flashed_messages() %}
+        {% if message[0] == 'success' %}
+            <script type="text/javascript">
+                swal("Success!", {
+                    icon: "success",
+                });
+            </script>
+        {% elif message[0] == 'notfound' %}
+            <script type="text/javascript">
+                swal("Repository not found", {
+                    icon: "error",
+                });
+            </script>
+        {% endif %}
+    {% endwith %}
+
+
+    <div class="section">
+        <h1 class="title">All repositories</h1>
+
+        <div class="repositories">
+            {% for rep in reps %}
+                <div class="repository" name="{{ rep }}">
+                    <h2 class="rep-name">{{ rep }}</h2>
+                    <a href="{{ url_for('del_repository',rep_name = rep ) }}" class="remove">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        {% if reps|length == 0 %}
+            <h1 class="subtitle center">You havent repositories!</h1>
+            <div class="clone-block_info">
+                <span class="subtitle center small">But you can <a href="{{ url_for('clone') }}" class="subtitle-link">clone</a> them!</div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
