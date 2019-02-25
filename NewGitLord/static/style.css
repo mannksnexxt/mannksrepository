@@ -491,7 +491,7 @@ nav {
     background-color: #ecf0f1;
     border-radius: 5px;
     padding: 5px;
-    max-width: 25%;
+    max-width: 33.333%;
     overflow: hidden;
     transition: .3s;
     cursor: pointer;
