@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Geodesy</title>
+</head>
+<body>
+
+    <div id="app">
+
+        <header :class="{active : menu}">
+            <button class="menu" @click="menu = !menu">
+                <i class="fas fa-ellipsis-h"></i>
+            </button>
+
+            <h2>Значения</h2>
+            <button class="btn clear" @click="clearValues">Очистить</button>
+            <div class="static-values">
+
+                <div class="form-group">
+    				<input placeholder="i" v-model="headData.i" required>
+    				<span class="float-up">Высота прибора</span>
+    			</div>
+                <div class="form-group">
+    				<input placeholder="H" v-model="headData.H" required>
+    				<span class="float-up">Высота</span>
+    			</div>
+                <div class="form-group">
+    				<input placeholder="MO" v-model="headData.zeroPlace" @keyup.enter="headData.zeroPlace += '° '" required>
+    				<span class="float-up">Место нуля</span>
+                    <button class="put-degree" @click="headData.zeroPlace += '°'">°</button>
+    			</div>
+
+            </div>
+            <div class="space"></div>
+            <button class="btn fix" @click="fixValues">Сохранить</button>
+        </header>
+        <section @click="closeMenu" :class="{darker: menu}">
+            <div class="symbols">
+                <div class="symbol">ВК</div>
+                <div class="symbol">V</div>
+                <div class="symbol">U</div>
+                <div class="symbol">D</div>
+                <div class="symbol">S</div>
+                <div class="symbol">hi</div>
+                <div class="symbol">Δ</div>
+                <div class="symbol">h</div>
+                <div class="symbol">H</div>
+            </div>
+
+
+            <div class="computions">
+
+                <div class="form-group">
+    				<input v-model="mainData.verticalCircle" @keyup.enter="mainData.verticalCircle += '°'" required>
+    				<span class="float-up">Вертикальный круг</span>
+                    <button class="put-degree" @click="mainData.verticalCircle += '° '">°</button>
+    			</div>
+                <div class="compution-item">{{ computeV }}</div>
+
+                <div class="form-group">
+    				<input v-model="mainData.U" required>
+    				<span class="float-up">Высота на рейке</span>
+    			</div>
+
+                <div class="form-group">
+    				<input v-model.float="mainData.distance" required>
+    				<span class="float-up">Дистанция</span>
+    			</div>
+
+                <div class="compution-item">{{ computeS }}</div>
+                <div class="compution-item">{{ computeHi }}</div>
+                <div class="compution-item">{{ computeD }}</div>
+                <div class="compution-item">{{ computeH }}</div>
+                <div class="compution-item">{{ computeGlobalH }}</div>
+            </div>
+        </section>
+
+    </div>
+
+
+    <script src="js/script.js"></script>
+</body>
+</html>
